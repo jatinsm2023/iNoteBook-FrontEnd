@@ -110,7 +110,7 @@ function Noteitem(props) {
           </div>
         </div>
       )}
-      <Card className="m-6 w-full border">
+      <Card className="m-0 w-full border">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {note.title}
