@@ -1,169 +1,141 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Avatar,
+} from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import {
+  UserCircleIcon,
+  ChevronDownIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+} from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
+// profile menu component
 
-export default function Navbar() {
-  const location = useLocation();
+function ProfileMenu() {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  useEffect(() => {
-    if (location.pathname === "/") {
-      document.title = "iNotebook - Home";
-    }
-    if (location.pathname === "/about") {
-      document.title = "iNotebook - About";
-    }
-    if (location.pathname === "/services") {
-      document.title = "iNotebook - Services";
-    }
-  }, [location]);
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const SignOUT = () => {
+    localStorage.removeItem("auth-token");
+    navigate("/Login");
+  };
+  const profileMenuItems = [
+    {
+      label: "Edit Profile",
+      icon: Cog6ToothIcon,
+      route: "/Edit",
+      onClick: closeMenu,
+    },
+    {
+      label: "Sign Out",
+      icon: PowerIcon,
+      route: "/Login",
+      onClick: SignOUT,
+    },
+  ];
   return (
-    <nav className="dark bg-white   dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src="/notes.png" className="h-8" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            iNoteBook
-          </span>
-        </Link>
-        <div className="flex md:order-2">
-          <button
-            type="button"
-            data-collapse-toggle="navbar-search"
-            aria-controls="navbar-search"
-            aria-expanded="false"
-            className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
+    (localStorage.getItem("auth-token") || window.location === "/Login") && (
+      <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+        <MenuHandler>
+          <Button
+            variant="text"
+            color="blue-gray"
+            className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
           >
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-            <span className="sr-only">Search</span>
-          </button>
-          <div className="relative hidden md:block">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-              <span className="sr-only">Search icon</span>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+            <Avatar
+              variant="circular"
+              size="sm"
+              alt="tania andrew"
+              className="border border-gray-900 p-0.5"
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
             />
-          </div>
-          <button
-            data-collapse-toggle="navbar-search"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-search"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
-        </div>
-        <div
-          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-          id="navbar-search"
-        >
-          <div className="relative mt-3 md:hidden">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search..."
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`h-3 w-3 transition-transform ${
+                isMenuOpen ? "rotate-180" : ""
+              }`}
             />
-          </div>
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link
-                to="/"
-                id="home"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                aria-current="page"
-              >
-                Home
+          </Button>
+        </MenuHandler>
+        <MenuList className="p-1">
+          {profileMenuItems.map(({ label, icon, route, onClick }, key) => {
+            const isLastItem = key === profileMenuItems.length - 1;
+            return (
+              <Link to={route}>
+                <MenuItem
+                  key={label}
+                  onClick={onClick}
+                  className={`flex items-center gap-2 rounded border border-white hover:border-white ${
+                    isLastItem
+                      ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                      : ""
+                  }`}
+                >
+                  {React.createElement(icon, {
+                    className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+                    strokeWidth: 2,
+                  })}
+                  <Typography
+                    as="span"
+                    variant="small"
+                    className="font-normal"
+                    color={isLastItem ? "red" : "inherit"}
+                  >
+                    {label}
+                  </Typography>
+                </MenuItem>
               </Link>
-            </li>
-            <li>
-              <Link
-                to="/about"
-                id="about"
-                className="lock py-2 px-3 text-white-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/services"
-                id="services"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Services
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            );
+          })}
+        </MenuList>
+      </Menu>
+    )
   );
 }
+
+// nav list component
+
+function ComplexNavbar() {
+  const [isNavOpen, setIsNavOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setIsNavOpen(false)
+    );
+  }, []);
+
+  return (
+    <Navbar className="m-2  z-50 mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6 bg-black text-white">
+      <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
+        <span className="text-2xl">
+          <img src="/notes.png" alt="" width={"20px"} />
+        </span>
+        <Typography
+          as="a"
+          href="#"
+          className="mr-4 ml-2 cursor-pointer py-1.5 font-bold  text-white "
+        >
+          iNoteBook
+        </Typography>
+        <ProfileMenu />
+      </div>
+      <MobileNav open={isNavOpen} className="overflow-scroll"></MobileNav>
+    </Navbar>
+  );
+}
+
+export default ComplexNavbar;

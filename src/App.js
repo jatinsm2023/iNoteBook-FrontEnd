@@ -1,18 +1,21 @@
 import React from "react";
 import Home from "./Components/Home";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navbar";
+import ComplexNavbar from "./Components/Navbar";
 import About from "./Components/About";
 import NoteState from "./Context/notes/NoteState";
+import Login from './Components/Login'
 import "./App.css";
 function App() {
   return (
     <>
       <NoteState>
-        <Navbar />
+        <ComplexNavbar />
 
       
         <Routes>
+
+            <Route path="/Login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
         </Routes>

@@ -7,6 +7,7 @@ export default function Home() {
     <>
       <div className="m-5">
         <AddNote />
+        <br /><br />
         <Notes />
       </div>
     </>

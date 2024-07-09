@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../Context/notes/noteContext";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Button,
+} from "@material-tailwind/react";
 function AddNote() {
   const context = useContext(noteContext);
   const { addNote } = context;
@@ -84,13 +87,13 @@ function AddNote() {
             Tag
           </label>
         </div>
-        <button
+        <Button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           onClick={handleClick}
         >
           Add Note
-        </button>
+        </Button>
       </div>
     </>
   );
