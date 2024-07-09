@@ -12,11 +12,8 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import {
-  UserCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
@@ -124,13 +121,14 @@ function ComplexNavbar() {
         <span className="text-2xl">
           <img src="/notes.png" alt="" width={"20px"} />
         </span>
-        <Typography
-          as="a"
-          href="#"
-          className="mr-4 ml-2 cursor-pointer py-1.5 font-bold  text-white "
-        >
-          iNoteBook
-        </Typography>
+        <Link to='/'>
+          <Typography
+            as="a"
+            className="mr-4 ml-2 cursor-pointer py-1.5 font-bold  text-white "
+          >
+            iNoteBook
+          </Typography>
+        </Link>
         <ProfileMenu />
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll"></MobileNav>

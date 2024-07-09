@@ -1,6 +1,6 @@
 import React from "react";
 import NoteContext from "./noteContext";
-import Toaster ,{toast} from "react-hot-toast";
+import toast from "react-hot-toast";
 const NoteState = (props) => {
   const host = "http://localhost:5000";
   const n1 = [];
