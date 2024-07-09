@@ -10,8 +10,9 @@ import {
 
 } from "@material-tailwind/react";
 import toast, { Toaster } from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom";
 function Edit () {
+    const navigate = useNavigate();
     const [usercred, setUsercred] = useState({name: "", email:"", password: ""})
     const onChange = (e) => {
         setUsercred({...usercred, [e.target.name]: e.target.value})
@@ -53,6 +54,11 @@ function Edit () {
             const json = await response.json();
             console.log(json);
             toast.success("User Updated");
+        
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+           
         } catch (error) {
             console.log(error);
             toast.error("Internal Server Error");
