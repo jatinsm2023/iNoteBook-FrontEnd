@@ -18,7 +18,7 @@ function Edit () {
         setUsercred({...usercred, [e.target.name]: e.target.value})
     }
     const getUSER = async () =>{
-        const response = await fetch("http://localhost:5000/api/auth/getUser", {
+        const response = await fetch("https://inotebook-backend-xujt.onrender.com/api/auth/getUser", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function Edit () {
 
     const UpdateUser = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/updateUser", {
+            const response = await fetch("https://inotebook-backend-xujt.onrender.com/api/auth/updateUser", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

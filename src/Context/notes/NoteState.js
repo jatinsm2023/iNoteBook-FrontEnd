@@ -2,7 +2,7 @@ import React from "react";
 import NoteContext from "./noteContext";
 import toast from "react-hot-toast";
 const NoteState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "https://inotebook-backend-xujt.onrender.com";
   const n1 = [];
 
   const [notes, setNotes] = React.useState(n1);
