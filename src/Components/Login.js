@@ -164,7 +164,7 @@ function Login() {
           </CardFooter>
         </Card>
       ) : (
-        <Card className="w-96 m-auto mt-16">
+        <Card className="md:w-96 m-auto mt-16 w-full">
           <CardHeader
             variant="gradient"
             color="gray"
